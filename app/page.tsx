@@ -69,9 +69,9 @@ export default function Home() {
               href="https://github.com/RJain12/imessage-personalization-ai"
               target="_blank"
               className="btn btn-sm"
-              style={{ fontSize: '0.7rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+              style={{ fontSize: '0.7rem' }}
             >
-              ⭐ Star on GitHub
+              GitHub
             </a>
           </div>
         </div>
