@@ -179,11 +179,11 @@ Sample: ${msgs.slice(-5).map((m: any) => m.text).join(' | ')}
 # TASK
 Produce a deeply insightful character study and communication manual for ${selectedName}. 
 
-Your output MUST be a JSON object with this EXACT structure:
+Your output MUST be a JSON object with this EXACT structure (Use Markdown formatting like headers, bolding, and lists INSIDE the string values for nicer rendering):
 {
-  "comprehensiveProfile": "1200+ word narrative essay character study...",
-  "professionalGrowth": "400-word professional communication analysis...",
-  "clarityAnalysis": "Identification of communication blindspots...",
+  "comprehensiveProfile": "1200+ word narrative essay character study with Markdown headers and formatting...",
+  "professionalGrowth": "400-word professional communication analysis with Markdown formatting...",
+  "clarityAnalysis": "Identification of communication blindspots with Markdown formatting...",
   "communicationStyle": {
     "sentencePatterns": { "averageLength": number, "complexity": "string", "commonStructures": ["string"] },
     "emojiReactionPatterns": { "favoriteEmojis": [{ "emoji": "string", "usage": "string" }], "contextualUsage": "string" },
