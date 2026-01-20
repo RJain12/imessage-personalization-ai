@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  turbopack: {},
   webpack: (config, { isServer }) => {
     // sql.js uses fs which isn't available in browser
     if (!isServer) {
