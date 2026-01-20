@@ -11,10 +11,10 @@ interface Step5IntelligenceProps {
     onStartOver: () => void;
 }
 
-type TabType = 'essay' | 'professional' | 'clarity';
+type TabType = 'strengths' | 'flaws';
 
 export default function Step5Intelligence({ analysisResult, onBack, onStartOver }: Step5IntelligenceProps) {
-    const [activeTab, setActiveTab] = useState<TabType>('essay');
+    const [activeTab, setActiveTab] = useState<TabType>('strengths');
     const [copied, setCopied] = useState(false);
 
     const deep = analysisResult.deepAnalysis;
@@ -41,6 +41,19 @@ export default function Step5Intelligence({ analysisResult, onBack, onStartOver 
             <div className="markdown-body">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
             </div>
+
+            <div style={{ marginTop: '4rem', padding: '2rem', border: '1px solid #000', textAlign: 'center' }}>
+                <h4 style={{ marginBottom: '1rem' }}>Found this insightful?</h4>
+                <p className="opacity-60">This project is open-source. A star on GitHub goes a long way!</p>
+                <a
+                    href="https://github.com/RJain12/imessage-personalization-ai"
+                    target="_blank"
+                    className="btn btn-primary"
+                    style={{ marginTop: '0.5rem' }}
+                >
+                    ⭐ Star on GitHub
+                </a>
+            </div>
         </div>
     );
 
@@ -56,15 +69,13 @@ export default function Step5Intelligence({ analysisResult, onBack, onStartOver 
             <div className="card-section" style={{ padding: 0 }}>
                 {/* Navigation Tabs */}
                 <div className="tab-navigation">
-                    <TabButton active={activeTab === 'essay'} onClick={() => setActiveTab('essay')} label="📖 The Portrait" />
-                    <TabButton active={activeTab === 'professional'} onClick={() => setActiveTab('professional')} label="💼 Career DNA" />
-                    <TabButton active={activeTab === 'clarity'} onClick={() => setActiveTab('clarity')} label="🔍 The Mirror" />
+                    <TabButton active={activeTab === 'strengths'} onClick={() => setActiveTab('strengths')} label="💪 Your Strengths" />
+                    <TabButton active={activeTab === 'flaws'} onClick={() => setActiveTab('flaws')} label="⚠️ Your Flaws" />
                 </div>
 
                 <div style={{ padding: '2.5rem 2rem', background: '#fff' }}>
-                    {activeTab === 'essay' && renderContent(deep.comprehensiveProfile, "Your Character Portrait")}
-                    {activeTab === 'professional' && renderContent(deep.professionalGrowth, "Your Career Strategy")}
-                    {activeTab === 'clarity' && renderContent(deep.clarityAnalysis, "The Clarity Audit")}
+                    {activeTab === 'strengths' && renderContent(deep.strengthsReport, "Communication Strengths")}
+                    {activeTab === 'flaws' && renderContent(deep.flawsReport, "Communication Flaws")}
                 </div>
             </div>
 

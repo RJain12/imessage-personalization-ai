@@ -199,9 +199,8 @@ export interface DeepAnalysisResult {
     occupation: string;
     lifestyle: string;
   };
-  comprehensiveProfile: string;
-  professionalGrowth: string;
-  clarityAnalysis: string;
+  strengthsReport: string;
+  flawsReport: string;
   topicsByRelationship: {
     person: string;
     topics: { topic: string; frequency: number; sentiment: string }[];

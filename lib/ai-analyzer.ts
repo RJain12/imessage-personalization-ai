@@ -189,9 +189,8 @@ Produce a deeply insightful Intelligence Report for ${selectedName}.
 
 Your output MUST be a JSON object with this EXACT structure (Use Markdown formatting like headers, bolding, and lists INSIDE the string values):
 {
-  "comprehensiveProfile": "A 1200+ word narrative character study addressed to YOU. Explain who YOU are using deep analogies. Analyze your cognitive rhythms, your emotional core, and what makes your spirit unique. Glaze your strengths, then transition into a deep, sophisticated critique of your inner workings.",
-  "professionalGrowth": "A 400-word career manual addressed to YOU. How do YOU lead? How do YOU struggle in corporate hierarchies? Give sophisticated advice on how to weaponize your natural voice for influence.",
-  "clarityAnalysis": "A deep audit of your communication blindspots. Where do YOU lose people? What parts of your internal logic are unclear to the outside world? Explain this using a sophisticated analogy.",
+  "strengthsReport": "A 1000+ word deep-dive into your biggest communication BRIGHT spots. Use sophisticated analogies. Address the user as 'You'. GLAZE the user—explain why their natural rhythms are effective, charismatic, or brilliant. No text examples.",
+  "flawsReport": "A 1000+ word brutal but sophisticated audit of your biggest communication FLAWS. Address the user as 'You'. Identify exactly where you lose people, where your friction points are, and what makes you difficult or unclear to communicate with. Point out your communication blindspots directly using analogies. No text examples.",
   "communicationStyle": {
     "sentencePatterns": { "averageLength": number, "complexity": "string", "commonStructures": ["string"] },
     "emojiReactionPatterns": { "favoriteEmojis": [{ "emoji": "string", "usage": "string" }], "contextualUsage": "string" },

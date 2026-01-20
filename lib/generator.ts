@@ -197,9 +197,13 @@ function generateChatGPTPersonalizationProfile(deep: DeepAnalysisResult, data: P
         content += `\n`;
     }
 
-    // COMPREHENSIVE PROFILE
-    content += `# COMPREHENSIVE PROFILE\n\n`;
-    content += deep.comprehensiveProfile;
+    // INTELLIGENCE REPORTS
+    content += `# COMMUNICATION STRENGTHS\n\n`;
+    content += deep.strengthsReport;
+    content += `\n\n`;
+
+    content += `# COMMUNICATION FLAWS\n\n`;
+    content += deep.flawsReport;
     content += `\n\n`;
 
     // TOPIC ANALYSIS BY RELATIONSHIP

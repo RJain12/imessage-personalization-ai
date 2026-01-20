@@ -2,10 +2,21 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
     try {
+        const body = await request.json();
+        const { prompt } = body;
         const apiKey = process.env.GEMINI_API_KEY;
 
+        console.log('--- DEBUG: API Key Presence Check ---');
+        console.log('Prompt length:', prompt?.length);
+        console.log('API Key loaded:', !!apiKey);
+        if (apiKey) console.log('API Key starts with:', apiKey.substring(0, 8));
+
         if (!prompt || !apiKey) {
-            return NextResponse.json({ error: 'Missing prompt or API configuration' }, { status: 400 });
+            return NextResponse.json({
+                error: 'Missing prompt or API configuration',
+                hasPrompt: !!prompt,
+                hasApiKey: !!apiKey
+            }, { status: 400 });
         }
 
         const response = await fetch(
@@ -31,21 +42,38 @@ export async function POST(request: Request) {
 
         if (!response.ok) {
             const errorText = await response.text();
-            console.error('Gemini API Error:', errorText);
-            return NextResponse.json({ error: 'Gemini API failed' }, { status: response.status });
+            console.error('Gemini API Error Detail:', errorText);
+
+            let parsedError;
+            try {
+                parsedError = JSON.parse(errorText);
+            } catch (e) {
+                parsedError = errorText;
+            }
+
+            return NextResponse.json({
+                error: 'Gemini API failed',
+                status: response.status,
+                detail: parsedError
+            }, { status: response.status });
         }
 
         const data = await response.json();
 
         if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
-            return NextResponse.json({ error: 'Invalid response from Gemini' }, { status: 500 });
+            console.error('Invalid Gemini Response Structure:', JSON.stringify(data));
+            return NextResponse.json({ error: 'Invalid response from Gemini', raw: data }, { status: 500 });
         }
 
         const text = data.candidates[0].content.parts[0].text;
 
         return NextResponse.json({ text });
     } catch (error) {
-        console.error('Proxy Error:', error);
-        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+        console.error('CRITICAL PROXY ERROR:', error);
+        return NextResponse.json({
+            error: 'Internal server error',
+            message: error instanceof Error ? error.message : 'Unknown error',
+            stack: error instanceof Error ? error.stack : undefined
+        }, { status: 500 });
     }
 }
