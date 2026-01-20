@@ -177,13 +177,21 @@ Sample: ${msgs.slice(-5).map((m: any) => m.text).join(' | ')}
 `).join('\n')}
 
 # TASK
-Produce a deeply insightful character study and communication manual for ${selectedName}. 
+Produce a deeply insightful Intelligence Report for ${selectedName}. 
 
-Your output MUST be a JSON object with this EXACT structure (Use Markdown formatting like headers, bolding, and lists INSIDE the string values for nicer rendering):
+**TONAL GUIDELINES:**
+- Address the user directly as "You".
+- Use sophisticated analogies and metaphores to explain their behavior.
+- Be personable and warm, but profoundly analytical.
+- **DO NOT** include specific text examples or message quotes. The analysis must feel broad and deeply understood, not like it's just repeating snippets.
+- **GLAZE THE USER:** Celebrate their unique strengths, intelligence, and the beauty in their communication style.
+- **DIRECT CRITIQUE:** Be brutally honest and insightful about their flaws, communication blindspots, and points of friction.
+
+Your output MUST be a JSON object with this EXACT structure (Use Markdown formatting like headers, bolding, and lists INSIDE the string values):
 {
-  "comprehensiveProfile": "1200+ word narrative essay character study with Markdown headers and formatting...",
-  "professionalGrowth": "400-word professional communication analysis with Markdown formatting...",
-  "clarityAnalysis": "Identification of communication blindspots with Markdown formatting...",
+  "comprehensiveProfile": "A 1200+ word narrative character study addressed to YOU. Explain who YOU are using deep analogies. Analyze your cognitive rhythms, your emotional core, and what makes your spirit unique. Glaze your strengths, then transition into a deep, sophisticated critique of your inner workings.",
+  "professionalGrowth": "A 400-word career manual addressed to YOU. How do YOU lead? How do YOU struggle in corporate hierarchies? Give sophisticated advice on how to weaponize your natural voice for influence.",
+  "clarityAnalysis": "A deep audit of your communication blindspots. Where do YOU lose people? What parts of your internal logic are unclear to the outside world? Explain this using a sophisticated analogy.",
   "communicationStyle": {
     "sentencePatterns": { "averageLength": number, "complexity": "string", "commonStructures": ["string"] },
     "emojiReactionPatterns": { "favoriteEmojis": [{ "emoji": "string", "usage": "string" }], "contextualUsage": "string" },
@@ -227,7 +235,7 @@ Your output MUST be a JSON object with this EXACT structure (Use Markdown format
   }
 }
 
-DATA SAMPLES FOR ANALYSIS:
+DATA SAMPLES FOR ANALYSIS (INTERNAL USE ONLY - NEVER QUOTE THESE IN OUTPUT):
 - DIVERSE SAMPLES: ${diverseSample.slice(0, 400).join(' | ')}
 - CONVERSATION FLOWS: ${conversations.slice(0, 25).map(c => c.messages.map((m: any) => m.text).join(' -> ')).join('\n\n')}
 

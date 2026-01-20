@@ -8,6 +8,7 @@ import Step2Upload from './components/Step2Upload';
 import Step2_5SelectPerson from './components/Step2_5SelectPerson';
 import Step3Process from './components/Step3Process';
 import Step4Generate from './components/Step4Generate';
+import Step5Intelligence from './components/Step5Intelligence';
 
 export default function Home() {
   const [state, setState] = useState<StepState>({
@@ -51,7 +52,7 @@ export default function Home() {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={{ paddingBottom: '5rem' }}>
       <header className="header">
         <h1>iMessage Context Builder</h1>
         <p>Transform your iMessage history into a personalized AI profile</p>
@@ -91,7 +92,15 @@ export default function Home() {
         {state.currentStep === 'generate' && state.analysisResult && (
           <Step4Generate
             analysisResult={state.analysisResult}
+            onComplete={() => handleStepComplete('generate')}
             onBack={() => handleBack('process')}
+          />
+        )}
+
+        {state.currentStep === 'intelligence' && state.analysisResult && (
+          <Step5Intelligence
+            analysisResult={state.analysisResult}
+            onBack={() => handleBack('generate')}
             onStartOver={handleStartOver}
           />
         )}
@@ -106,7 +115,7 @@ export default function Home() {
         opacity: 0.6
       }}>
         <p>
-          Built by <a href="#" style={{ textDecoration: 'underline' }}>Rishab Jain</a> •
+          Built by <a href="https://rishabjaink.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline' }}>Rishab Jain</a> •
           View on <a
             href="https://github.com/RJain12/imessage-personalization-ai.git"
             target="_blank"
@@ -120,7 +129,7 @@ export default function Home() {
 }
 
 function getNextStep(current: StepId): StepId {
-  const steps: StepId[] = ['export', 'upload', 'selectPerson', 'process', 'generate'];
+  const steps: StepId[] = ['export', 'upload', 'selectPerson', 'process', 'generate', 'intelligence'];
   const currentIndex = steps.indexOf(current);
   return steps[currentIndex + 1] || current;
 }
@@ -131,7 +140,8 @@ function getDataKey(step: StepId): string {
     upload: 'parsedData',
     selectPerson: 'selectedName',
     process: 'analysisResult',
-    generate: 'generatedContext',
+    generate: '',
+    intelligence: '',
   };
   return map[step];
 }

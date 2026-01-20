@@ -10,7 +10,8 @@ const steps: { id: StepId; label: string }[] = [
     { id: 'upload', label: '2. Upload' },
     { id: 'selectPerson', label: '3. Select' },
     { id: 'process', label: '4. Analyze' },
-    { id: 'generate', label: '5. Download' },
+    { id: 'generate', label: '5. Profile' },
+    { id: 'intelligence', label: '6. Insights' },
 ];
 
 export default function Stepper({ currentStep, completedSteps }: StepperProps) {
@@ -20,10 +21,10 @@ export default function Stepper({ currentStep, completedSteps }: StepperProps) {
                 <div
                     key={step.id}
                     className={`step ${step.id === currentStep
-                            ? 'active'
-                            : completedSteps.includes(step.id)
-                                ? 'completed'
-                                : ''
+                        ? 'active'
+                        : completedSteps.includes(step.id)
+                            ? 'completed'
+                            : ''
                         }`}
                 >
                     {step.label}

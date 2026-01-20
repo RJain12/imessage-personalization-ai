@@ -245,7 +245,7 @@ export interface ContextSection {
   tokenEstimate: number;
 }
 
-export type StepId = 'export' | 'upload' | 'selectPerson' | 'process' | 'generate';
+export type StepId = 'export' | 'upload' | 'selectPerson' | 'process' | 'generate' | 'intelligence';
 
 export interface StepState {
   currentStep: StepId;
