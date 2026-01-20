@@ -7,8 +7,8 @@ import {
     PersonalitySignals,
     TemporalPatterns,
     ConversationSample,
+    DeepAnalysisResult,
 } from '@/types/messages';
-import type { DeepAnalysisResult } from './ai-analyzer';
 
 export function analyzeMessages(data: ParsedData, deepAnalysis?: DeepAnalysisResult): AnalysisResult {
     const myMessages = data.messages.filter(m => m.isFromMe);
