@@ -147,7 +147,7 @@ function buildDeepAnalysisPrompt(
 ): string {
     const handleMap = new Map(data.handles.map(h => [h.id, h.displayName]));
 
-    return `You are analyzing ${selectedName}'s iMessage history to create a COMPREHENSIVE PERSONAL PROFILE for AI personalization. 
+    const fullPrompt = `You are analyzing ${selectedName}'s iMessage history to create a COMPREHENSIVE PERSONAL PROFILE for AI personalization. 
 
 **IMPORTANT CONTEXT:**
 - User Name: ${selectedName}
@@ -159,19 +159,19 @@ function buildDeepAnalysisPrompt(
 - Time span: ${((data.dateRange.end.getTime() - data.dateRange.start.getTime()) / (1000 * 60 * 60 * 24 * 365)).toFixed(1)} years
 
 # DIVERSE MESSAGE SAMPLES (Across different people/chats)
-${diverseSample.slice(0, 300).join('\n')}
+${diverseSample.slice(0, 150).join('\n')}
 
 # RECENT MESSAGES
-${recentMessages.slice(-150).map((m, i) => `${i + 1}. ${m.text}`).join('\n')}
+${recentMessages.slice(-75).map((m, i) => `${i + 1}. ${m.text}`).join('\n')}
 
 # CONVERSATION EXAMPLES (Strategic context)
-${conversations.slice(0, 20).map((conv, i) => `
+${conversations.slice(0, 12).map((conv, i) => `
 ## Conv ${i + 1}: ${conv.context}
 ${conv.messages.map((m: any) => `${m.isFromMe ? `[${selectedName}]` : '[THEM]'}: ${m.text}`).join('\n')}
 `).join('\n')}
 
 # TOP RELATIONSHIPS
-${topRelationships.slice(0, 10).map(([id, msgs]) => `
+${topRelationships.slice(0, 8).map(([id, msgs]) => `
 **${handleMap.get(id) || id}**: ${msgs.length} messages
 Sample: ${msgs.slice(-5).map((m: any) => m.text).join(' | ')}
 `).join('\n')}
@@ -239,6 +239,14 @@ DATA SAMPLES FOR ANALYSIS (INTERNAL USE ONLY - NEVER QUOTE THESE IN OUTPUT):
 - CONVERSATION FLOWS: ${conversations.slice(0, 25).map(c => c.messages.map((m: any) => m.text).join(' -> ')).join('\n\n')}
 
 Return ONLY the JSON.`;
+
+    // Hard truncation to ensure we never exceed the safety limit
+    const safetyLimit = 95000;
+    if (fullPrompt.length > safetyLimit) {
+        return fullPrompt.substring(0, safetyLimit) + "\n... [truncated for size] ...\nReturn ONLY the JSON.";
+    }
+
+    return fullPrompt;
 }
 
 function parseDeepAnalysisResponse(text: string): DeepAnalysisResult {

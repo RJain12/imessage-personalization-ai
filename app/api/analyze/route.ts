@@ -17,7 +17,7 @@ export async function POST(request: Request) {
         const apiKey = process.env.GEMINI_API_KEY;
 
         // 2. PROMPT SIZE VALIDATION (Prevent resource exhaustion)
-        if (prompt && prompt.length > 50000) {
+        if (prompt && prompt.length > 100000) {
             return NextResponse.json({ error: 'Prompt too large' }, { status: 413 });
         }
 
