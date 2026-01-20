@@ -105,10 +105,20 @@ export default function Step3Process({ parsedData, selectedName, onComplete, onB
                         <button className="btn" onClick={onBack}>
                             ← Back
                         </button>
-                        <button className="btn btn-primary" onClick={handleStartAnalysis}>
-                            Start Deep Analysis →
+                        <button
+                            className="btn btn-primary"
+                            onClick={handleStartAnalysis}
+                            disabled={isAnalyzing || progress === 100}
+                            style={{ width: '100%' }}
+                        >
+                            {isAnalyzing ? `Analyzing... ${progress}%` : 'Start Deep Analysis →'}
                         </button>
                     </div>
+                    {isAnalyzing && (
+                        <p className="text-xs opacity-50 mt-1" style={{ textAlign: 'center' }}>
+                            Rate limiting active: Please do not refresh.
+                        </p>
+                    )}
                 </div>
             )}
 
