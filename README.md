@@ -1,84 +1,38 @@
-# iMessage Context Builder - Complete
+# iMessage Intelligence & Cognitive Profiling Engine
 
-## What I Built
+A high-fidelity reverse-engineering tool that transforms the opaque iMessage `chat.db` into a structured, analytical character study. This engine bypasses standard data exporters to perform direct SQL analysis on your communication history, mapping the hidden relationships and temporal patterns of your digital life.
 
-A Next.js app that uses **Gemini 2.0 Flash AI** to deeply analyze your iMessage communication patterns and generate a comprehensive context document for AI assistants.
+## 🧠 Core Innovation: The Reverse-Engineering Layer
 
-## Key Features
+The primary achievement of this project is the **Reverse Engineering of the Apple iMessage Database Schema**. Instead of relying on APIs or basic exports, this tool performs:
+- **Direct SQL Injection**: Utilizing `sql.js` (WASM-based) to parse the encrypted and relational `chat.db` locally in the browser.
+- **Complex Join Orchestration**: We've decoded the relationship between `handle`, `chat`, `message`, and `chat_handle_join` tables to reconstruct full conversation flows and group chat identities.
+- **Temporal Pattern Recovery**: Algorithms designed to extract peaks in social activity and communication cadence across years of data.
+- **Relationship Mapping**: Reverse-engineering the "importance" of contacts by analyzing reciprocal message counts, response latency, and shared group memberships.
 
-### 🤖 AI-Powered Deep Analysis
-- Uses your Gemini API key (pre-configured: `AIzaSyDLGWNqR73FZIOoObQh1atuNH8f5ihyM5E`)
-- Analyzes how you communicate in **3 different contexts**:
-  - **Group chats** - Your behavior in group settings
-  - **1:1 conversations** - How you interact one-on-one
-  - **Close relationships** - Your style with partners/best friends
+## 🤖 The Intelligence Layer (Gemini 2.5 Flash Lite)
 
-### 📊 What You Get
+Once the raw SQL data is distilled into structured context, we utilize **Gemini 2.5 Flash Lite** (the state-of-the-art for high-context character study) to perform:
+- **Cognitive Profile Generation**: A 1,200+ word deep-dive into your personality and values, expressed through metaphors and analogies.
+- **Professional Growth Audit**: Tailored advice on how your natural iMessage voice translates to high-level professional leadership.
+- **Communication Blindspots**: AI-detected patterns where your natural shorthand leads to external ambiguity.
 
-1. **Behavioral Insights**
-   - Communication strengths in each context
-   - Areas for improvement
-   - Specific examples from your messages
+## 🛡️ Privacy as a Technical Requirement
+- **Local-First Execution**: Your `chat.db` never leaves your machine. All SQL parsing occurs in an isolated WASM container in your browser.
+- **Server-Side Proxying**: Gemini requests are proxied via a local Next.js route to ensure your **API Key** stays environment-locked and never hits the client-side network tab.
+- **Zero-Logging Policy**: Configurable "Safety Mode" ensures Gemini data logging is disabled for every analysis session.
 
-2. **Personality Analysis**
-   - Overall personality description
-   - Unique traits
-   - Writing style breakdown
-   - Relationship dynamics
+## 🛠️ Technical Architecture
+- **Engine**: Next.js 16 + Webpack (Native support for binary `sql.js` processing).
+- **Relational DB**: In-memory SQLite parsing of Apple's `chat.db`.
+- **UI Architecture**: Monospace-brutalist design for high-transparency intelligence reporting.
+- **Models**: Optimized for Gemini 2.5 Flash Lite 09-2025 preview.
 
-3. **Personalized Recommendations**
-   - 5-10 specific suggestions for better communication
-   - Context-aware advice
+## 🚀 Deployment & Usage
+1. **Prepare**: Extract your database using the provided helper command in the app.
+2. **Inject**: Upload the `.db` file for local WASM parsing.
+3. **Map**: Select your identity from the reverse-engineered contact list.
+4. **Distill**: Generate your technical AI manual and deep-intelligence reports.
 
-4. **Comprehensive Context Document**
-   - Hundreds of real message samples
-   - Your authentic voice and phrases
-   - Ready to paste into any AI assistant
-
-## How to Use
-
-1. **Start the app** (already running):
-   ```bash
-   cd /Users/rishabjain/.gemini/antigravity/scratch/imessage-context-builder
-   npm run dev -- --webpack
-   ```
-
-2. **Open** http://localhost:3000
-
-3. **Follow the 4 steps**:
-   - **Step 1**: Export your iMessage database
-   - **Step 2**: Upload the file
-   - **Step 3**: AI analyzes your communication (uses Gemini)
-   - **Step 4**: Download your context document
-
-## Technical Details
-
-- **Framework**: Next.js 16 with webpack (required for sql.js)
-- **Database**: Client-side SQLite parsing with sql.js
-- **AI**: Gemini 2.0 Flash for behavioral analysis
-- **Privacy**: All processing happens in your browser
-- **Output**: Markdown/plain text context file (~500K-1M tokens)
-
-## Files Created
-
-- `lib/ai-analyzer.ts` - Gemini API integration
-- `lib/ai-sections.ts` - AI insight formatting
-- `lib/analyzer.ts` - Basic pattern analysis
-- `lib/generator.ts` - Context document generation
-- `lib/parser.ts` - SQLite database parsing
-- `app/components/Step3Process.tsx` - AI analysis UI
-- All other step components
-
-## Next Steps
-
-1. Open the app and try it with your iMessage data
-2. Review the AI insights about your communication
-3. Use the generated context with ChatGPT, Claude, or any AI assistant
-
-The context document will help AI assistants understand:
-- How you actually write and communicate
-- Your personality and behavioral patterns
-- Your relationships and social context
-- Your authentic voice (with hundreds of real examples)
-
-This is WAY better than generic "I'm a software engineer who likes..." prompts!
+---
+Built by [Rishab Jain](https://rishabjaink.com) • [GitHub](https://github.com/RJain12/imessage-personalization-ai)
